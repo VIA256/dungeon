@@ -1,6 +1,12 @@
 #include <stdio.h>
+#include <raylib.h>
 
 int main(void){
-	printf("Hello, World!\n");
-	return 0;
+  InitWindow(640, 480, "HELLO");
+  while(!WindowShouldClose()){
+    PollInputEvents();
+  }
+  CloseWindow();
+  
+  return 0;
 }
