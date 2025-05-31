@@ -2,7 +2,6 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -Iraylib/build/raylib/include
 LDFLAGS=-Wl,-rpath=. -L. -lraylib -lGL -lm
 
-GAME_SRC=main.c camera.c
 GAME_OBJ=main.o camera.o
 
 all: game
@@ -13,10 +12,10 @@ ifeq (,$(wildcard ./libraylib*))
 endif
 	$(CC) $(GAME_OBJ) $(LDFLAGS) -o dungeon_game
 
-main.o: main.c
+main.o: main.c main.h
 	$(CC) -c main.c $(CFLAGS) -o main.o
 
-camera.o: camera.c
+camera.o: camera.c camera.h
 	$(CC) -c camera.c $(CFLAGS) -o camera.o
 
 clean:

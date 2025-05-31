@@ -1,12 +1,11 @@
 #include "camera.h"
 
+#include "main.h"
+
 #include <raylib.h>
 
 #include <stdio.h>
 #include <errno.h>
-
-#define FPS 60
-#define DELTATIME(void) (GetFrameTime()*FPS)
 
 int main(void){
   Camera3D* cam = getCamera();
@@ -29,20 +28,22 @@ int main(void){
   DisableCursor();
   
   while(!WindowShouldClose()){
+    DrawFPS(0, 0);
+
     PollInputEvents();
     
-    UpdateCamera(cam, CAMERA_FIRST_PERSON);
+    UpdateCameraCustom(GET_DELTATIME());
 
     ClearBackground(SKYBLUE);
     BeginDrawing();
     BeginMode3D(*cam);
     /*DrawCube(Vector3 position, float width, float height, float length, Color color);*/
     DrawCube(
-		(Vector3){ 2.0f, 0.0f, 0.0f },
-		1.0f,
-		1.0f,
-		1.0f,
-		GRAY
+      (Vector3){ 2.0f, 0.0f, 0.0f },
+      1.0f,
+      1.0f,
+      1.0f,
+      GRAY
     );
     EndMode3D();
     EndDrawing();
