@@ -7,6 +7,11 @@
 #include <stdio.h>
 #include <errno.h>
 
+#define GAME_VERSION_MAJOR 0
+#define GAME_VERSION_MINOR 1
+#define GAME_VERSION_PATCH 0
+#define GAME_VERSION_STRING "alpha 0.1"
+
 int main(void){
   Camera3D* cam = getCamera();
   cam->position = (Vector3){ 0.0f, 0.0f, 0.0f };

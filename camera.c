@@ -44,6 +44,10 @@ void updateCameraCustom(float deltatime){
   }
   rx *= deltatime;
   ry *= deltatime;
+  if(rx != 0.0f && ry != 0.0f){
+    rx *= SQRT1_2;
+    ry *= SQRT1_2;
+  }
   
   UpdateCameraPro(
     &camera,

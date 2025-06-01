@@ -10,16 +10,16 @@ length (b)	description			example
 
 - - - - - - - - the following may repeat- - - - - - - - -
 1		next table of contents element	a1 
-2		setting enum position		0001 (FPS)	
+1		setting enum position		01 (FPS)	
 4		setting address			0000001f
-2		setting size (b)		000b (11 bytes)
+1		setting size (b)		0b (11 bytes)
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 1		table of contents end		af
 
 - - - - - - - - the following may repeat- - - - - - - - -
->=0, <=ffff	setting value			3c (60 FPS)
-     (65535)^
+>=0, <=ff	setting value			3c (60 FPS)
+     (255)^
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 4		end of file magic		9db7eb0b
