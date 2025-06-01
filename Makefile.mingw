@@ -1,0 +1,30 @@
+CC=x86_64-w64-mingw32-gcc
+CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -Iraylib/build/raylib/include
+LDFLAGS=-Wl,-rpath=. -L. -lraylib -lopengl32 -lm
+
+GAME_OBJ=main.o camera.o
+
+all: game
+
+game: $(GAME_OBJ)
+ifeq (,$(wildcard ./raylib.dll))
+	cp raylib/build/raylib/raylib.dll .
+endif
+	$(CC) $(GAME_OBJ) $(LDFLAGS) -o dungeon_game
+
+main.o: main.c main.h
+	$(CC) -c main.c $(CFLAGS) -o main.o
+
+camera.o: camera.c camera.h
+	$(CC) -c camera.c $(CFLAGS) -o camera.o
+
+clean:
+ifneq (,$(wildcard *.o))
+	rm *.o
+endif
+ifneq (,$(wildcard dungeon_game.exe))
+	rm dungeon_game.exe
+endif
+ifneq (,$(wildcard raylib.dll))
+	rm raylib.dll
+endif
