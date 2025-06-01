@@ -26,8 +26,6 @@ int main(void){
     return -1;
   }
 
-  SetTargetFPS(FPS);
-
   SetTraceLogLevel(LOG_DEBUG);
   
   DisableCursor();

@@ -9,11 +9,10 @@
 #define SETTINGS_END_MAGIC   0x9db7eb0b
 
 typedef enum Setting {
-  SETTING_FPS = 1,                           /*01*/
-  SETTING_WIDTH,                             /*02*/
-  SETTING_HEIGHT,                            /*03*/
-  SETTING_MOUSE_SENSITIVITY,                 /*04*/
-  SETTING_ARROW_SENSITIVITY,                 /*05*/
+  SETTING_WIDTH = 1,                         /*01*/
+  SETTING_HEIGHT,                            /*02*/
+  SETTING_MOUSE_SENSITIVITY,                 /*03*/
+  SETTING_ARROW_SENSITIVITY,                 /*04*/
 } Setting;
 
 LoadSettingsResult loadSettings(const char* filename){
