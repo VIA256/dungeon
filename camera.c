@@ -19,7 +19,7 @@ void updateCameraCustom(float deltatime){
   /*void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom);*/
   Vector3 movement = { 0 };
   float speed = 0.1f;
-  float mousesensitivity = 10.0f;
+  float mousesensitivity = 1.0f;
   float arrowsensitivity = 1.5f;
   
   float dx = ((float)IsKeyDown(KEY_W) - (float)IsKeyDown(KEY_S)) * speed * deltatime;
