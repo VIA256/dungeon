@@ -15,7 +15,7 @@ Camera3D* getCamera(void){
     return &camera;
 }
 
-void UpdateCameraCustom(float deltatime){
+void updateCameraCustom(float deltatime){
   /*void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom);*/
   Vector3 movement = { 0 };
   float speed = 0.1f;

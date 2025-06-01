@@ -28,15 +28,16 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=239;Make;0;EUTF-8;1;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2FMakefile;0;4
+current_page=5
+FILE_NAME_0=147;Make;0;EUTF-8;1;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2FMakefile;0;4
 FILE_NAME_1=83;C++;0;EUTF-8;0;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fmain.h;0;2
-FILE_NAME_2=664;C;0;EUTF-8;0;0;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fmain.c;0;2
-FILE_NAME_3=127;C++;0;EUTF-8;0;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fcamera.h;0;2
-FILE_NAME_4=202;C;0;EUTF-8;0;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fcamera.c;0;2
+FILE_NAME_2=678;C;0;EUTF-8;0;0;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fmain.c;0;2
+FILE_NAME_3=94;C++;0;EUTF-8;0;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fcamera.h;0;2
+FILE_NAME_4=232;C;0;EUTF-8;0;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fcamera.c;0;2
+FILE_NAME_5=84;C++;0;EUTF-8;0;1;0;%2Fhome%2Fhuman%2Fcoding%2Fc%2Fdungeon%2Fsettings.h;0;2
 
 [VTE]
-last_dir=/home/human/coding/c/dungeon
+last_dir=/home/human
 
 [build-menu]
 EX_00_LB=_Execute

@@ -5,6 +5,6 @@
 
 Camera3D* getCamera(void);
 
-void UpdateCameraCustom(float deltatime);
+void updateCameraCustom(float deltatime);
 
 #endif

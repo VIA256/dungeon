@@ -32,7 +32,7 @@ int main(void){
 
     PollInputEvents();
     
-    UpdateCameraCustom(GET_DELTATIME());
+    updateCameraCustom(GET_DELTATIME());
 
     ClearBackground(SKYBLUE);
     BeginDrawing();
