@@ -1,5 +1,4 @@
 #include "camera.h"
-
 #include "main.h"
 
 #include <raylib.h>
@@ -9,6 +8,7 @@
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten/emscripten.h>
+#include <emscripten/html5.h>
 #endif
 
 #define GAME_VERSION_MAJOR 0
@@ -65,6 +65,12 @@ void loop(void){
   DrawFPS(0, 0);
   
   PollInputEvents();
+
+#ifdef __EMSCRIPTEN__
+  if(IsMouseButtonDown(0) && !IsCursorHidden()){
+    DisableCursor();
+  }
+#endif
   
   updateCameraCustom(GET_DELTATIME());
   
