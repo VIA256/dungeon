@@ -1,15 +1,15 @@
 #include "settings.h"
 
-#include <stdint.h>
+#include <raylib.h>
 
-typedef enum iSetting {
+typedef enum IntSetting {
   SETTING_WIDTH = 0,                         /*00*/
   SETTING_HEIGHT,                            /*01*/
   SETTING_MOUSE_SENSITIVITY,                 /*02*/
   SETTING_ARROW_SENSITIVITY,                 /*03*/
-} Setting;
+} IntSetting;
 
-int iSettings[] = { /*indexed by iSetting enum*/
+int IntSettings[] = { /*indexed by iSetting enum*/
   640,  /*WIDTH*/
   480,  /*HEIGHT*/
   100,  /*MOUSE SENSITIVITY*/
@@ -25,5 +25,14 @@ int iSettings[] = { /*indexed by iSetting enum*/
 #define DSF_VERSION_STRING "alpha 0.1"
 
 LoadSettingsResult loadSettingsFromDSF(const char* filename){
+  if(!FileExists(filename)){
+      return LOAD_SETTINGS_ERROR_FILE_NOT_FOUND;
+  }
+  
+  int fileLength = GetFileLength(filename);
+  if(fileLength <= 0){
+      return LOAD_SETTINGS_ERROR_EMPTY_FILE;
+  }
+  
   return LOAD_SETTINGS_SUCCESS;
 }
