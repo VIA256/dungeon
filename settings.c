@@ -30,6 +30,10 @@ uint32_t byteArrayFourToUint32(unsigned char* b){ /*ASSUMES BYTE ARRAY HAS FOUR 
   return (uint32_t)( b[3] + (b[2] << 8) + (b[1] << 8*2) + (b[0] << 8*3) );
 }
 
+uint32_t byteArrayThreeToUint32(unsigned char* b){ /*ASSUMES BYTE ARRAY HAS THREE OR MORE ELEMENTS*/
+  return (uint32_t)( b[2] + (b[1] << 8) + (b[0] << 8*2) );
+}
+
 LoadSettingsResult loadSettingsFromDSF(const char* filename){
   if(!FileExists(filename)){
       return LOAD_SETTINGS_ERROR_FILE_NOT_FOUND;
@@ -47,6 +51,7 @@ LoadSettingsResult loadSettingsFromDSF(const char* filename){
   
   size_t offset = 0;
   
+  /*START MAGIC*/
   if(fileLength - offset < 4){
     UnloadFileData(fileData);
     return LOAD_SETTINGS_ERROR_INVALID_FORMAT;
@@ -56,6 +61,10 @@ LoadSettingsResult loadSettingsFromDSF(const char* filename){
     UnloadFileData(fileData);
     return LOAD_SETTINGS_ERROR_START_MAGIC;
   }
+  offset += 4;
+  
+  /*DSF VERSION*/
+  
   
   UnloadFileData(fileData);
   return LOAD_SETTINGS_SUCCESS;

@@ -22,6 +22,9 @@ int main(void){
   case LOAD_SETTINGS_ERROR_START_MAGIC:
     printf("start magic bytes did not match expectation\n");
     break;
+  case LOAD_SETTINGS_ERROR_INVALID_FORMAT:
+    printf("invalid format\n");
+    break;
   default:
     break;
   }
