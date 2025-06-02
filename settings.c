@@ -40,18 +40,23 @@ LoadSettingsResult loadSettingsFromDSF(const char* filename){
       return LOAD_SETTINGS_ERROR_EMPTY_FILE;
   }
   
-  unsigned char* fileData = LoadFileData(filename, &fileLength);
+  unsigned char* fileData = LoadFileData(filename, &fileLength); /*MUST BE FREED BY UnloadFileData()*/
   if(!fileData){
     return LOAD_SETTINGS_ERROR_FILE_READ_FAILURE;
   }
   
-  uint32_t start_magic = byteArrayFourToUint32(fileData);
-  printf("start_magic: %x\n", start_magic);
+  size_t offset = 0;
+  
+  if(fileLength - offset < 4){
+    UnloadFileData(fileData);
+    return LOAD_SETTINGS_ERROR_INVALID_FORMAT;
+  }
+  uint32_t start_magic = byteArrayFourToUint32(&fileData[offset]);
   if(start_magic != DSF_START_MAGIC){
+    UnloadFileData(fileData);
     return LOAD_SETTINGS_ERROR_START_MAGIC;
   }
   
   UnloadFileData(fileData);
-  
   return LOAD_SETTINGS_SUCCESS;
 }
