@@ -1,6 +1,7 @@
 #include "settings.h"
 
 #include <stdio.h>
+#include <stdint.h>
 
 int main(void){
   LoadSettingsResult sres = loadSettingsFromDSF("shit.dsf");
@@ -14,6 +15,12 @@ int main(void){
     break;
   case LOAD_SETTINGS_ERROR_EMPTY_FILE:
     printf("file is empty\n");
+    break;
+  case LOAD_SETTINGS_ERROR_FILE_READ_FAILURE:
+    printf("failed to read file\n");
+    break;
+  case LOAD_SETTINGS_ERROR_START_MAGIC:
+    printf("start magic bytes did not match expectation\n");
     break;
   default:
     break;

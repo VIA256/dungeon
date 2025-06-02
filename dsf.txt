@@ -5,21 +5,20 @@ game version 0.1 beta
 
 length (b)	description			example
 ----------------------------------------------------------
-4		start of file magic		8e110b0b
-3		game version (maj,min,pat)	000100 (0.1.0)
+4 uint32		start of file magic		8e110b0b
+3 uint32		game version (maj,min,pat)	000100 (0.1.0)
 
 - - - - - - - - the following may repeat- - - - - - - - -
-1		next table of contents element	a1 
-1		setting enum position		03 (MOUSE SENSITIVITY)	
-4		setting address			0000001f
-1		setting size (b)		0b (11 bytes)
+1 uint8		next table of contents element	a1 
+1 uint8		setting enum position		03 (MOUSE SENSITIVITY)	
+4 uint32		setting address			0000001f
+1 uint8		setting size (b)		0b (11 bytes)
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-1		table of contents end		af
+1 uint8		table of contents end		af
 
 - - - - - - - - the following may repeat- - - - - - - - -
->=0, <=ff	setting value			64 (100)
-     (255)^
+>=0, <=4 uint32	setting value			64 (100)
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-4		end of file magic		9db7eb0b
+4 uint32		end of file magic		9db7eb0b

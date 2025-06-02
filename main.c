@@ -29,12 +29,12 @@ int main(void){
   SetTraceLogLevel(LOG_DEBUG);
   
   DisableCursor();
-  
+
   while(!WindowShouldClose()){
     DrawFPS(0, 0);
-
+	
     PollInputEvents();
-    
+	
     updateCameraCustom(GET_DELTATIME());
 
     ClearBackground(SKYBLUE);
