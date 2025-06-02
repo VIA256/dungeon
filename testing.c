@@ -25,6 +25,9 @@ int main(void){
   case LOAD_SETTINGS_ERROR_INVALID_FORMAT:
     printf("invalid format\n");
     break;
+  case LOAD_SETTINGS_ERROR_VERSION_MISMATCH:
+    printf("version mismatch\n");
+    break;
   default:
     break;
   }

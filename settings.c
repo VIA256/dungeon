@@ -30,10 +30,6 @@ uint32_t byteArrayFourToUint32(unsigned char* b){ /*ASSUMES BYTE ARRAY HAS FOUR 
   return (uint32_t)( b[3] + (b[2] << 8) + (b[1] << 8*2) + (b[0] << 8*3) );
 }
 
-uint32_t byteArrayThreeToUint32(unsigned char* b){ /*ASSUMES BYTE ARRAY HAS THREE OR MORE ELEMENTS*/
-  return (uint32_t)( b[2] + (b[1] << 8) + (b[0] << 8*2) );
-}
-
 LoadSettingsResult loadSettingsFromDSF(const char* filename){
   if(!FileExists(filename)){
       return LOAD_SETTINGS_ERROR_FILE_NOT_FOUND;
@@ -56,15 +52,32 @@ LoadSettingsResult loadSettingsFromDSF(const char* filename){
     UnloadFileData(fileData);
     return LOAD_SETTINGS_ERROR_INVALID_FORMAT;
   }
-  uint32_t start_magic = byteArrayFourToUint32(&fileData[offset]);
-  if(start_magic != DSF_START_MAGIC){
+  uint32_t fileStartMagic = byteArrayFourToUint32(&fileData[offset]);
+  offset += 4;
+  if(fileStartMagic != DSF_START_MAGIC){
     UnloadFileData(fileData);
     return LOAD_SETTINGS_ERROR_START_MAGIC;
   }
-  offset += 4;
   
   /*DSF VERSION*/
-  
+  if(fileLength - offset < 3){
+    UnloadFileData(fileData);
+    return LOAD_SETTINGS_ERROR_INVALID_FORMAT;
+  }
+  uint8_t fileVersionMajor = fileData[offset];
+  ++offset;
+  uint8_t fileVersionMinor = fileData[offset];
+  ++offset;
+  uint8_t fileVersionPatch = fileData[offset];
+  ++offset;
+  if(
+    fileVersionMajor != DSF_VERSION_MAJOR ||
+    fileVersionMinor != DSF_VERSION_MINOR ||
+    fileVersionPatch != DSF_VERSION_PATCH
+  ){
+    UnloadFileData(fileData);
+    return LOAD_SETTINGS_ERROR_VERSION_MISMATCH;
+  }
   
   UnloadFileData(fileData);
   return LOAD_SETTINGS_SUCCESS;
