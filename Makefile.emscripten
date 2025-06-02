@@ -1,0 +1,27 @@
+CC=emcc
+CFLAGS=-Wall -Wextra -Wpedantic -std=c99 -Iraylib/build/raylib/include
+LDFLAGS=-Lraylib/build/raylib/lib -lraylib -lm -s USE_GLFW=3 -s GL_ENABLE_GET_PROC_ADDRESS -s WASM=1 -s MODULARIZE=1 -s EXPORT_ES6=1
+
+GAME_OBJ=main.o camera.o
+
+all: game
+
+game: $(GAME_OBJ)
+	$(CC) $(GAME_OBJ) $(LDFLAGS) -o index.js
+
+main.o: main.c main.h
+	$(CC) -c main.c $(CFLAGS) -o main.o
+
+camera.o: camera.c camera.h
+	$(CC) -c camera.c $(CFLAGS) -o camera.o
+
+clean:
+ifneq (,$(wildcard *.o))
+	rm *.o
+endif
+ifneq (,$(wildcard index.wasm))
+	rm index.wasm
+endif
+ifneq (,$(wildcard index.js))
+	rm index.js
+endif
