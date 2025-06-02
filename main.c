@@ -7,13 +7,31 @@
 #include <stdio.h>
 #include <errno.h>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten/emscripten.h>
+#endif
+
 #define GAME_VERSION_MAJOR 0
 #define GAME_VERSION_MINOR 1
 #define GAME_VERSION_PATCH 0
 #define GAME_VERSION_STRING "alpha 0.1"
 
+void loop(void);
+void cleanup(void);
+
+#ifdef __EMSCRIPTEN__
+EMSCRIPTEN_KEEPALIVE void pause(void){ emscripten_pause_main_loop(); }
+EMSCRIPTEN_KEEPALIVE void unpause(void){ emscripten_resume_main_loop(); }
+EMSCRIPTEN_KEEPALIVE void shutdown(void){
+  emscripten_cancel_main_loop();
+  cleanup();
+}
+#endif
+
+Camera3D* cam;
+
 int main(void){
-  Camera3D* cam = getCamera();
+  cam = getCamera();
   cam->position = (Vector3){ 0.0f, 0.0f, 0.0f };
   cam->target = (Vector3){ 1.0f, 0.0f, 0.0f };
   cam->up = (Vector3){ 0.0f, 1.0f, 0.0f };
@@ -26,35 +44,47 @@ int main(void){
     return -1;
   }
 
+  #ifdef __EMSCRIPTEN__
+  emscripten_set_main_loop(loop, 0, 1);
+  #endif
+
   SetTraceLogLevel(LOG_DEBUG);
   
   DisableCursor();
 
   while(!WindowShouldClose()){
-    DrawFPS(0, 0);
-	
-    PollInputEvents();
-	
-    updateCameraCustom(GET_DELTATIME());
-
-    ClearBackground(SKYBLUE);
-    BeginDrawing();
-    BeginMode3D(*cam);
-    /*DrawCube(Vector3 position, float width, float height, float length, Color color);*/
-    DrawCube(
-      (Vector3){ 2.0f, 0.0f, 0.0f },
-      1.0f,
-      1.0f,
-      1.0f,
-      GRAY
-    );
-    EndMode3D();
-    EndDrawing();
-    
-    SwapScreenBuffer();
+    loop();
   }
   
-  CloseWindow();
+  cleanup();
   
   return 0;
+}
+
+void loop(void){
+  DrawFPS(0, 0);
+  
+  PollInputEvents();
+  
+  updateCameraCustom(GET_DELTATIME());
+  
+  ClearBackground(SKYBLUE);
+  BeginDrawing();
+  BeginMode3D(*cam);
+  /*DrawCube(Vector3 position, float width, float height, float length, Color color);*/
+  DrawCube(
+    (Vector3){ 2.0f, 0.0f, 0.0f },
+    1.0f,
+    1.0f,
+    1.0f,
+    GRAY
+  );
+  EndMode3D();
+  EndDrawing();
+  
+  SwapScreenBuffer();
+}
+
+void cleanup(void){
+  CloseWindow();
 }
