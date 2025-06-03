@@ -1,0 +1,32 @@
+game mechanics:
+- resource management:
+    you have limited resources and need to use them wisely to move forward
+    such resources include:
+      - food 
+      - water
+      - deteriorating weapons/armour
+- visuals:
+  - camera placement:
+    - fixed camera when in larger spaces
+    - over the shoulder in closer spaces
+  - ps1-style graphics
+    - low poly
+    - fog in larger areas
+- sleeping
+  - advance skills
+  - refill health
+  - lack of sleep give you a small but noticable debuf in all catagories
+- saving
+  - game saves automatically upon sleeping
+  - death resets you back to last sleep point, but with half the rest value
+- enemies
+  - grunts
+    - wander around looking for something to kill
+    - not intelligent
+    - not a threat individually, but can swarm
+    - rats, bugs, feral wolves that belong to tricksters
+  - tricksters
+    - intelligent humanoids that know the dungeon inside and out
+    - set booby traps for humans
+    - engage with humans and lead them to their death
+    - trade with humans
